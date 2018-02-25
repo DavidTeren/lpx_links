@@ -11,6 +11,12 @@ class PackagesFile
     pretty_format_packages_file
   end
 
+  def read_package_file
+    JSON.parse(File.read(packages_file))
+  end
+
+  private
+
   def pretty_format_packages_file
     res = pretty_format_json
     File.open(packages_file, 'w+') do |f|
@@ -20,17 +26,11 @@ class PackagesFile
   end
 
   def pretty_format_json
-    JSON.pretty_generate(read_package_file_to_hash)
+    JSON.pretty_generate(read_package_file)
   end
 
   def plist_to_json
     `plutil -convert json \'#{plist_file}\' -o #{packages_file}`
-  end
-
-  private
-
-  def read_package_file_to_hash
-    JSON.parse(File.read(packages_file))
   end
 
   def plist_file
