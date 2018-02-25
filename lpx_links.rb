@@ -47,7 +47,7 @@ module GetLinks
   end
 
   def report
-    msg = "#{'#' * 60}"
+    msg = '#' * 60
     msg << "\n\tlpx_links has found #{@line.to_a.length} links."
     msg << "\nCheck the following file:\n\t#{DWN_LST}"
     rep = File.open(REPORT, 'w')
